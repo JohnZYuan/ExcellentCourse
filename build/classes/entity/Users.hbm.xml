@@ -2,13 +2,21 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<!-- Generated 2016-5-30 17:09:02 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-	<class name="entity.Users" table="USERS">
-		<id name="uid" type="int">
-			<generator class="native" />
-		</id>
-		<property name="username" type="java.lang.String" />
-		<property name="password" type="java.lang.String" />
-	</class>
+    <class name="entity.Users" table="USERS">
+        <id name="uid" type="int">
+            <column name="UID" />
+            <generator class="native" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="role_id" type="int">
+            <column name="ROLE_ID" />
+        </property>
+    </class>
 </hibernate-mapping>

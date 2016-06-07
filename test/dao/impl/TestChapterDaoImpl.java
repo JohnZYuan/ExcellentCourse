@@ -15,7 +15,7 @@ public class TestChapterDaoImpl {
 	public void testChapterQueryAll(){
 		ChapterDao cdao = new ChapterDaoImpl();
 		List<Chapter> chapters=cdao.queryAllChapter();
-		Assert.assertEquals(1, chapters.size());
+		Assert.assertEquals(4, chapters.size());
 	}
 	@Test 
 	public void testChapterAdd(){
@@ -29,21 +29,21 @@ public class TestChapterDaoImpl {
 	@Test
 	public void testChapterQueryById(){
 		ChapterDao cdao = new ChapterDaoImpl();
-		Chapter chapter = cdao.queryChapterById(5);
+		Chapter chapter = cdao.queryChapterById(10);
 		Assert.assertEquals("第一章", chapter.getName());
 	}
 	@Test
 	public void testChapterDelete(){
 		ChapterDao cdao = new ChapterDaoImpl();
-		cdao.deleteChapter(5);
+		cdao.deleteChapter(7);
 	}
 	@Test
 	public void testChapterUpdate(){
 		ChapterDao cdao = new ChapterDaoImpl();
 		Chapter  chapter = new Chapter();
 		chapter.setName("第一章-第一讲");
-		cdao.updateChapterById(3, chapter);
-		Chapter new_chapter = cdao.queryChapterById(5);
+		cdao.updateChapterById(10, chapter);
+		Chapter new_chapter = cdao.queryChapterById(10);
 		Assert.assertEquals("第一章-第一讲", new_chapter.getName());
 	}
 }

@@ -47,4 +47,22 @@ public class ChapterAction {
 		String Ppt = chapter.getPpt();
 		return Ppt;
 	}
+	
+	/*添加新的章节*/
+	public void addChapter (String name , String ppt , String video){
+		Chapter chapter = new Chapter();
+		chapter.setName(name);
+		chapter.setPpt(ppt);
+		chapter.setVideo(video);
+		cdao.addChapter(chapter);
+	}
+	
+	/*更新章节，根据id*/
+	public void updateChapterById(int id , String name ,String ppt , String video){
+		Chapter chapter = new Chapter();
+		chapter.setName(name);
+		chapter.setPpt(ppt);
+		chapter.setVideo(video);
+		cdao.updateChapterById(id, chapter);
+	}
 }

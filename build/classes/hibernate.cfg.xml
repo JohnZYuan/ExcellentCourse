@@ -7,6 +7,20 @@
 
 <hibernate-configuration>
 	<session-factory>
+		<!-- 配置C3P0连接池属性 -->    
+	    <property name="hibernate.connection.provider_class">  
+	        org.hibernate.connection.C3P0ConnectionProvider  
+	    </property>  
+	    <property name="hibernate.c3p0.max_size">20</property>  
+	    <property name="hibernate.c3p0.min_size">5</property>  
+	    <property name="hibernate.c3p0.timeout">50000</property>  
+	    <property name="hibernate.c3p0.max_statements">100</property>  
+	    <property name="hibernate.c3p0.idle_test_period">3000</property>  
+	    <!-- 当连接池耗尽并接到获得连接的请求，则新增加连接的数量 -->  
+	    <property name="hibernate.c3p0.acquire_increment">2</property>  
+	    <!-- 是否验证，检查连接 -->  
+	    <property name="hibernate.c3p0.validate">true</property>  
+	
 		<property name="connection.username">root</property>
 		<property name="connection.password">Yz0902db</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -16,7 +30,10 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="hibernate.current_session_context_class">thread</property>
 		
-		<mapping resource = "entity/Users.hbm.xml"/>
 		<mapping resource = "entity/Chapter.hbm.xml"/>
+		<mapping resource = "entity/Users.hbm.xml"/>
+		<mapping resource = "entity/Teachers.hbm.xml"/>
+		<mapping resource = "entity/Students.hbm.xml"/>
+		<mapping resource = "entity/Admins.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
