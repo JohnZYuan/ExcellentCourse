@@ -32,8 +32,5 @@
 		
 		<mapping resource = "entity/Chapter.hbm.xml"/>
 		<mapping resource = "entity/Users.hbm.xml"/>
-		<mapping resource = "entity/Teachers.hbm.xml"/>
-		<mapping resource = "entity/Students.hbm.xml"/>
-		<mapping resource = "entity/Admins.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

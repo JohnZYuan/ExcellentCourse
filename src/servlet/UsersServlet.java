@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 
 import action.UsersAction;
+import entity.Users;
 
 /**
  * Servlet implementation class UsersServlet
@@ -32,20 +35,28 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8"); 
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
 		String method = request.getParameter("method");
 		 if (method.equals("login")){
-			 int role_id = Integer.parseInt(request.getParameter("role_id"));
-			 String name = request.getParameter("name");
+			 String uid = request.getParameter("uid");
 			 String psd = request.getParameter("psd");
-			 if (uAction.login(role_id, name, psd)){
-				 PrintWriter out = response.getWriter();
-				 out.println("登录成功");
+			 if (uAction.login(uid, psd)){
+				 Users rstuser = uAction.getUsersByUid(uid);
+				 session.setAttribute("username", rstuser.getUsername());
+				 session.setAttribute("useruid", rstuser.getUid());
+				 session.setAttribute("userrole", rstuser.getRole());
+				 Boolean result = uAction.login(uid, psd);
+				 out.print(result);
 			 }
 			 else{
-				 PrintWriter out = response.getWriter();
-				 out.print("登录失败");
+				 session.setAttribute("err", "用户名或密码错误");
+				 Boolean result = uAction.login(uid, psd);
+				 out.print(result);
 			 }
+			 
 		 }
+		 
 	}
 
 	/**

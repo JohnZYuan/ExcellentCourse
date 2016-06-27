@@ -187,14 +187,46 @@ public class UsersDaoImpl implements UsersDao{
 			if(u.getPassword()!=null){
 				old_user.setPassword(u.getPassword());
 			}
-			if(u.getRole_id()!=0){
-				old_user.setRole_id(u.getRole_id());
-			}
 			session.update(old_user);
 			tx.commit();
 		}catch (Exception ex)
 		{
 			ex.printStackTrace();
+		}
+		finally
+		{
+			if (tx != null )
+			{
+				tx = null ;
+			}
+		}
+	}
+
+	@Override
+	public Users FindUserByUid(String uid) {
+		Transaction tx = null ;
+		String hql = "";
+		try{
+			Session session = MyhibernateSessionFactory.getSessionFactory().getCurrentSession();
+			tx = session.beginTransaction();
+//			Users user = new Users();
+//			user = session.load(Users.class,unum);
+//			System.out.println(user.getUsername());
+//			tx.commit();
+//			return user;
+			hql = "from Users where uid=?";
+			Query query = session.createQuery(hql);
+			query.setParameter(0, uid);
+			@SuppressWarnings("unchecked")
+			List<Users> list = query.list();
+			Users user = new Users();
+			user = list.get(0);
+			return user;
+			
+		}catch (Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
 		}
 		finally
 		{

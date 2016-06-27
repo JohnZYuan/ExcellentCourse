@@ -3,35 +3,38 @@ package entity;
 //”√ªß¿‡
 public class Users {
 
-	private int uid;
+	private int id;
 	private String username;
 	private String password;
-	private int role_id;
+	private String uid;
+	private String role;
 
-	public int getRole_id() {
-		return role_id;
-	}
-
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
-	}
 
 	public Users() {
 
 	}
 
-	public Users(int uid, String username, String password,int role_id) {
-		this.uid = uid;
+	public Users(int id, String username, String password,String uid,String role) {
+		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.role_id= role_id;
+		this.uid= uid;
 	}
 
-	public int getUid() {
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUid() {
 		return uid;
 	}
 
-	public void setUid(int uid) {
+	public void setUid(String uid) {
 		this.uid = uid;
 	}
 
@@ -51,4 +54,13 @@ public class Users {
 		this.password = password;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	
 }
